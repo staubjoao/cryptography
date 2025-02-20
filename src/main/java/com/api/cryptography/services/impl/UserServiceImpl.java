@@ -25,8 +25,8 @@ public class UserServiceImpl implements UserService {
         User user = new User();
 
         user.setValue(userDTO.value());
-        user.setUserDocument(encryptionService.encryptString(userDTO.userDocument()));
-        user.setCreditCardToken(encryptionService.encryptString(userDTO.creditCardToken()));
+        user.setUserDocument(encryptionService.encode(userDTO.userDocument()));
+        user.setCreditCardToken(encryptionService.encode(userDTO.creditCardToken()));
 
         return userRepository.save(user);
     }
@@ -37,8 +37,16 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public Optional<User> findById(Long id) {
-        return userRepository.findById(id);
+    public User findById(Long id) {
+        Optional<User> user = userRepository.findById(id);
+        if(user.isPresent()) {
+            User userFound = user.get();
+            userFound.setCreditCardToken(encryptionService.decrypt(userFound.getCreditCardToken()));
+            userFound.setUserDocument(encryptionService.decrypt(userFound.getUserDocument()));
+            return userFound;
+        } else {
+            return null;
+        }
     }
 
 }

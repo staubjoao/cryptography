@@ -2,7 +2,7 @@ package com.api.cryptography.controllers;
 
 import com.api.cryptography.dtos.UserDTO;
 import com.api.cryptography.models.User;
-import com.api.cryptography.services.UserService;
+import com.api.cryptography.services.impl.UserServiceImpl;
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -15,7 +15,7 @@ import java.util.Optional;
 @AllArgsConstructor
 public class UserController {
 
-    private final UserService userService;
+    private final UserServiceImpl userService;
 
     @GetMapping
     public ResponseEntity<List<User>> getUsers() {
@@ -31,8 +31,7 @@ public class UserController {
 
     @GetMapping("/{id}")
     public ResponseEntity<User> getUser(@PathVariable Long id) {
-        Optional<User> user = userService.findById(id);
-        return user.map(ResponseEntity::ok)
-                .orElseGet(() -> ResponseEntity.notFound().build());
+        User user = userService.findById(id);
+        return ResponseEntity.ok(user);
     }
 }
