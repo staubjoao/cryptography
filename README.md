@@ -4,7 +4,7 @@ This repository provides a solution to the encryption challenge, ensuring that s
 
 ## Challenge
 
-The challenge description and requirements can be found [here]([LINK_TO_CHALLENGE](https://github.com/backend-br/desafios/blob/master/cryptography/PROBLEM.md)).
+The challenge description and requirements can be found [here](https://github.com/backend-br/desafios/blob/master/cryptography/PROBLEM.md).
 
 ## Solution
 
@@ -77,5 +77,5 @@ The following REST endpoints were implemented to support the CRUD operations:
 - AES Encryption
 - REST API
 
-For more details, refer to the [challenge description]([LINK_TO_CHALLENGE](https://github.com/backend-br/desafios/blob/master/cryptography/PROBLEM.md)) or explore the implementation in this repository.
+For more details, refer to the [challenge description](https://github.com/backend-br/desafios/blob/master/cryptography/PROBLEM.md) or explore the implementation in this repository.
 
